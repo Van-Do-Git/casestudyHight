@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form đăng nhập</title>
+    <style>
+        .background{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, violet, cadetblue);
+        }
+        fieldset{
+            position: relative;
+            top: -100px;
+            height: 90px;
+            width: 270px;
+            background: linear-gradient(to bottom right, silver, lightskyblue);
+        }
+        h2{
+            position: fixed; top: 100px;
+        }
+        button{
+            left: 3px;
+            position: relative;
+            width: 250px;
+            background: linear-gradient(to bottom right, violet, cadetblue);
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <h2>ĐĂNG NHẬP</h2>
+    </br>
+<form action="" >
+    <fieldset >
+        <table>
+            <tr>
+                <td>
+                    Username:
+                </td>
+                <td>
+                    <input type="text"  id="keyword">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Password:
+                </td>
+                <td>
+                    <input type="password"  id="password">
+                </td>
+            </tr>
+        </table>
+        <br>
+        <button onclick="Search();" type="button">Đăng Nhập</button>
+    </fieldset>
+</form>
+</div>
+<script>
+    let admin={
+        name: "doxuanvan",
+        password: "123456"
+    }
+    function Search(){
+        let a = document.getElementById("keyword").value;
+        let b = document.getElementById("password").value;
+        if(a==""||b==""){
+            setTimeout(alert("Hãy nhập đầy đủ thông tin đăng nhập"),2000);
+        }else if(a==admin.name&&b==admin.password){
+            window.location.assign("indexAdmin.html");
+        }else{
+            window.location.assign("indexCustomer.html");
+        }
+    }
+</script>
+</body>
+</html>
