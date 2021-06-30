@@ -96,7 +96,7 @@
     </fieldset>
 </form>
 <br>
-<button onclick="displayProduct();" style="left: 2px;position: relative">Kho Hàng</button>
+<button onclick="displayProduct(listproducts);" style="left: 2px;position: relative">Kho Hàng</button>
 <button onclick="Report();" style="left: 2px;position: relative">Báo Cáo</button>
 <table class="table table-bordered">
     <tr>
@@ -169,19 +169,19 @@
         }
     }
 
-    function displayProduct() {
+    function displayProduct(arr) {
         let body = "";
-        for (let i = 0; i < listproducts.length; i++) {
+        for (let i = 0; i < arr.length; i++) {
             body +=
                 "<tr>" +
                 "<th>" + (i + 1) + "</th>" +
-                "<td><img src=" + listproducts[i].link + " width='60' height='60'></td>" +
-                "<td>" + listproducts[i].mobie + "</td>" +
-                "<td>" + listproducts[i].quantity + "</td>" +
-                "<td>" + listproducts[i].importprice + "</td>" +
-                "<td>" + listproducts[i].price + "</td>" +
+                "<td><img src=" + arr[i].link + " width='60' height='60'></td>" +
+                "<td>" + arr[i].mobie + "</td>" +
+                "<td>" + arr[i].quantity + "</td>" +
+                "<td>" + arr[i].importprice + "</td>" +
+                "<td>" + arr[i].price + "</td>" +
                 "<td><button onclick='sale(" + i + ");'>Sale</button></td>" +
-                "<td>" + listproducts[i].inventory + "</td>" +
+                "<td>" + arr[i].inventory + "</td>" +
                 "<td><button class='edit' onclick='Edit(" + i + ");'>Edit</button></td>" +
                 "<td><button class='delete' onclick='Delete(" + i + ");'>Delete</button></td>" +
                 "</tr>";
@@ -225,7 +225,7 @@
         } else {
             listproducts[i].sale += a;
             listproducts[i].inventory = listproducts[i].quantity - listproducts[i].sale;
-            displayProduct();
+            displayProduct(listproducts);
         }
         localStorage.setItem('data2',JSON.stringify(listproducts));
     }
@@ -238,7 +238,7 @@
                 listproducts[j] = listproducts[j + 1];
             }
             listproducts.length = listproducts.length - 1;
-            displayProduct();
+            displayProduct(listproducts);
         }
         localStorage.setItem('data2',JSON.stringify(listproducts));
     }
@@ -272,7 +272,7 @@
         listproducts[i].quantity = document.getElementById("equantity").value;
         listproducts[i].importPrice();
         listproducts[i].inVentory();
-        displayProduct();
+        displayProduct(listproducts);
         document.getElementById("edit").innerHTML = "";
         localStorage.setItem('data2',JSON.stringify(listproducts));
     }
@@ -292,7 +292,7 @@
             if (indexAdmin !=-1){
                 let body =
                     "<tr>" +
-                    "<td>" + (indexAdmin + 1) + "</td>" +
+                    "<th>" + (indexAdmin + 1) + "</th>" +
                     "<td><img src=" + listproducts[indexAdmin].link + " width='60' height='60'></td>" +
                     "<td>" + listproducts[indexAdmin].mobie + "</td>" +
                     "<td>" + listproducts[indexAdmin].quantity + "</td>" +
@@ -300,8 +300,8 @@
                     "<td>" + listproducts[indexAdmin].price + "</td>" +
                     "<td><button onclick='sale(" + indexAdmin + ");'>Sale</button></td>" +
                     "<td>" + listproducts[indexAdmin].inventory + "</td>" +
-                    "<td><button onclick='Edit(" + indexAdmin + ");'>Edit</button></td>" +
-                    "<td><button onclick='Delete(" + indexAdmin + ");'>Delete</button></td>" +
+                    "<td><button class='edit' onclick='Edit(" + indexAdmin + ");'>Edit</button></td>" +
+                    "<td><button class='delete' onclick='Delete(" + indexAdmin + ");'>Delete</button></td>" +
                     "</tr>";
                 document.getElementById("body").innerHTML = body;
             }else{
