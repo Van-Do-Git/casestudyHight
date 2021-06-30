@@ -150,7 +150,7 @@
             this.oder=0;
         }
 
-        importPrice() {
+        getImportPrice() {
             return this.price = this.importprice * 120 / 100;
         }
 
@@ -202,10 +202,10 @@
             addnew.link == "") {
             setTimeout(alert("Bạn hãy điền đầy đủ thông tin sản phản trước khi Add"), 2000);
         } else {
-            addnew.importPrice();
+            addnew.getImportPrice();
             addnew.inVentory();
             listproducts.push(addnew);
-            displayProduct();
+            displayProduct(listproducts);
             document.getElementById("mobie").value="";
             document.getElementById("quantity").value="";
             document.getElementById("price").value="";
@@ -270,8 +270,8 @@
         listproducts[i].mobie = document.getElementById("emobie").value;
         listproducts[i].importprice = document.getElementById("eprice").value;
         listproducts[i].quantity = document.getElementById("equantity").value;
-        listproducts[i].importPrice();
-        listproducts[i].inVentory();
+        listproducts[i].price = listproducts[i].importprice * 120 / 100;
+        listproducts[i].inventory = listproducts[i].quantity - listproducts[i].sale;
         displayProduct(listproducts);
         document.getElementById("edit").innerHTML = "";
         localStorage.setItem('data2',JSON.stringify(listproducts));
